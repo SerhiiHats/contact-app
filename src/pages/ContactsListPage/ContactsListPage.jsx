@@ -1,14 +1,24 @@
 import "./ContactsListPage.css";
-import {Link, useNavigate} from "react-router-dom";
-import {dbFake} from "../../dbFake.js";
+import {useNavigate} from "react-router-dom";
 import ContactCard from "../../features/ContactCard/ContactCard.jsx";
+import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+
 
 const ContactsListPage = () => {
+  const [resources, setResources] = useState([]);
   const navigate = useNavigate();
+  const contacts = useSelector(state => state.contacts);
 
-  const {resources} = dbFake;
 
-  const handlerClick = (id)=>{
+  console.log(contacts.resources);
+
+
+  useEffect(() => {
+    setResources(contacts.resources)
+  }, []);
+
+  const handlerClick = (id) => {
     navigate(`/contact/${id}`);
   }
 
@@ -42,7 +52,7 @@ const ContactsListPage = () => {
           <h2>Contacts</h2>
           <ul>
             {resources.map(item => (
-              <li className="contact-card" key={item.id} onClick={()=>handlerClick(item.id)}>
+              <li className="contact-card" key={item.id} onClick={() => handlerClick(item.id)}>
                 <ContactCard
                   avatar={item.avatar_url}
                   tags={item.tags}

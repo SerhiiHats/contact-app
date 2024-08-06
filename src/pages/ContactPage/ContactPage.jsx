@@ -1,8 +1,8 @@
 import "./ContactPage.css";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {dbFake} from "../../dbFake.js";
 import ContactCard from "../../features/ContactCard/ContactCard.jsx";
+import {useSelector} from "react-redux";
 
 const initialItem = {
   avatar_url: "",
@@ -11,15 +11,13 @@ const initialItem = {
 }
 
 const ContactPage = () => {
-
   const [item, setItem] = useState(initialItem);
   const {id} = useParams();
-
+  const contacts = useSelector(state => state.contacts);
 
 
   useEffect(() => {
-
-    setItem(dbFake.resources.find(item=>item.id === id))
+    setItem(contacts.resources.find(item=>item.id === id))
   }, []);
 
 
