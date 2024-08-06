@@ -1,0 +1,20 @@
+.contact-page{
+    width: 431px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.form-add-tag{
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-add-tag input{
+    font-size: 18px;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #AAAAAA;
+    border-radius: 8px;
+}

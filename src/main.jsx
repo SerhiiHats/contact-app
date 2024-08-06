@@ -4,7 +4,6 @@ import App from './App.jsx'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import ContactsListPage from "./features/ContactsListPage/ContactsListPage.jsx";
 import ContactPage from "./features/ContactPage/ContactPage.jsx";
-import Home from "./features/Home/Home.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,14 +12,10 @@ const router = createBrowserRouter([
     children:[
       {
         path: "/",
-        element: <Home/>,
-      },
-      {
-        path: "/contacts",
         element: <ContactsListPage/>,
       },
       {
-        path: "/contact",
+        path: "/contact/:id",
         element: <ContactPage/>,
       },
     ]

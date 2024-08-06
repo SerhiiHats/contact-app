@@ -1,14 +1,20 @@
 import "./ContactsListPage.css";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {dbFake} from "../../dbFake.js";
 import ContactCard from "./ContactCard.jsx";
 
 const ContactsListPage = () => {
+  const navigate = useNavigate();
+
   const {resources} = dbFake;
+
+  const handlerClick = (id)=>{
+    navigate(`/contact/${id}`);
+  }
+
   return (
     <div className="container">
-      Contact List coming soon !!!
-      <Link to={"/"}> come back</Link>
+
       <section className="contacts">
         <div className="contacts-left-card">
           <form className="form-add-contact">
@@ -36,7 +42,7 @@ const ContactsListPage = () => {
           <h2>Contacts</h2>
           <ul>
             {resources.map(item => (
-              <li className="contact-card" key={item.id}>
+              <li className="contact-card" key={item.id} onClick={()=>handlerClick(item.id)}>
                 <ContactCard
                   avatar={item.avatar_url}
                   tags={item.tags}

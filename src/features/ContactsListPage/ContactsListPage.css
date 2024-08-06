@@ -7,6 +7,7 @@ li {
 
 
 .contacts {
+
     max-width: 1280px;
     display: grid;
     grid-template-columns: 472px auto;
