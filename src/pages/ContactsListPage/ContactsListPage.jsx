@@ -1,7 +1,7 @@
 import "./ContactsListPage.css";
 import {Link, useNavigate} from "react-router-dom";
 import {dbFake} from "../../dbFake.js";
-import ContactCard from "./ContactCard.jsx";
+import ContactCard from "../../features/ContactCard/ContactCard.jsx";
 
 const ContactsListPage = () => {
   const navigate = useNavigate();

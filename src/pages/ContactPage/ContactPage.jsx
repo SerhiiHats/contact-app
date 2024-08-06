@@ -2,7 +2,7 @@ import "./ContactPage.css";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {dbFake} from "../../dbFake.js";
-import ContactCard from "../ContactsListPage/ContactCard.jsx";
+import ContactCard from "../../features/ContactCard/ContactCard.jsx";
 
 const initialItem = {
   avatar_url: "",

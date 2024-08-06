@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import ContactsListPage from "./features/ContactsListPage/ContactsListPage.jsx";
-import ContactPage from "./features/ContactPage/ContactPage.jsx";
+import ContactsListPage from "./pages/ContactsListPage/ContactsListPage.jsx";
+import ContactPage from "./pages/ContactPage/ContactPage.jsx";
 
 const router = createBrowserRouter([
   {
