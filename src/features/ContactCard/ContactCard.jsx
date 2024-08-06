@@ -1,4 +1,8 @@
-const ContactCard = ({avatar, tags, fields}) => {
+const ContactCard = ({
+                       avatar = "/person_default.png",
+                       tags,
+                       fields
+                     }) => {
 
   const userFields = {
     email: '',
@@ -8,14 +12,14 @@ const ContactCard = ({avatar, tags, fields}) => {
 
   for (let key in fields) {
 
-    if (fields[key][0].label === "first name"){
+    if (fields[key][0].label === "first name") {
       userFields.firstName = fields[key][0].value;
     }
-    if (fields[key][0].label === "last name"){
+    if (fields[key][0].label === "last name") {
       userFields.lastName = fields[key][0].value;
 
     }
-    if (fields[key][0].label === "email"){
+    if (fields[key][0].label === "email") {
       userFields.email = fields[key][0].value;
 
     }
@@ -23,12 +27,14 @@ const ContactCard = ({avatar, tags, fields}) => {
   }
 
 
-
   return (
     <div>
       <div className="user">
         <div className="wrap-avatar">
-          <img src={avatar} alt="avatar"/>
+          <img
+            src={avatar}
+            alt="avatar"
+          />
         </div>
         <div className="user-fields">
           <p>
