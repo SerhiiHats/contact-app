@@ -1,6 +1,9 @@
-.contact-page{
-    width: 431px;
-    margin: 0 auto;
+.container-contact-page{
+    max-width: 431px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 16px;
+    padding-right: 16px;
     padding-top: 40px;
 }
 

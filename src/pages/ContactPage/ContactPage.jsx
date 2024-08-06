@@ -22,7 +22,7 @@ const ContactPage = () => {
 
 
   return (
-    <div className="contact-page">
+    <div className="container-contact-page">
       ContactPage coming soon...
      <Link to={"/"}> come back</Link>
       <ContactCard

@@ -23,7 +23,7 @@ const ContactsListPage = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container-contacts">
 
       <section className="contacts">
         <div className="contacts-left-card">
