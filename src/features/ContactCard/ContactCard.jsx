@@ -1,4 +1,7 @@
+import {client} from "../../api/nimble.js";
+
 const ContactCard = ({
+                       removeContact = null,
                        avatar = "/person_default.png",
                        tags,
                        fields
@@ -26,9 +29,16 @@ const ContactCard = ({
 
   }
 
+  // const handleDelete = async (e, idClient) => {
+  //   e.stopPropagation();
+  //   const response = await client.deleteContactById(idClient);
+  //   console.log(response)
+  // }
+
 
   return (
-    <div>
+    <div className="wrap-user">
+      {removeContact && <span onClick={(e) => removeContact(e)} className="btn-delete">x</span>}
       <div className="user">
         <div className="wrap-avatar">
           <img

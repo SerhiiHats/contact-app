@@ -10,8 +10,12 @@ const initialItem = {
   fields: {}
 }
 
+
 const ContactPage = () => {
   const [item, setItem] = useState(initialItem);
+  const [updateTags, setUpdateTags] = useState(null);
+  const [tag, setTag] = useState("");
+
   const {id} = useParams();
 
 
@@ -25,8 +29,30 @@ const ContactPage = () => {
     }
 
     loadData();
-  }, []);
+  }, [updateTags]);
 
+  const handlerSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!tag) {
+      return;
+    }
+
+    const newTags = tag.split(",");
+
+    const oldTags = item.tags.map(tag=>tag.tag);
+
+    const newArrayOfTags = [...oldTags, ...newTags]
+
+    const newTagsForSave = {
+      tags: newArrayOfTags
+    }
+    const response = await client.updateContactTags(id, newTagsForSave);
+
+    setUpdateTags(newArrayOfTags)
+    setTag("");
+
+  }
 
   return (
     <div className="container-contact-page">
@@ -37,8 +63,12 @@ const ContactPage = () => {
         tags={item.tags}
         fields={item.fields}
       />
-      <form className="form-add-tag">
-        <input type="text"/>
+      <form className="form-add-tag" onSubmit={e => handlerSubmit(e)}>
+        <input
+          type="text"
+          value={tag}
+          onChange={(e) => setTag(e.target.value)}
+        />
         <input type="submit" value="Add Tag"/>
       </form>
 
