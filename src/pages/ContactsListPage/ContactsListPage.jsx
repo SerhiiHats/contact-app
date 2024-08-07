@@ -1,21 +1,24 @@
 import "./ContactsListPage.css";
 import {useNavigate} from "react-router-dom";
 import ContactCard from "../../features/ContactCard/ContactCard.jsx";
-import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
+import {client} from "../../api/nimble.js";
 
 
 const ContactsListPage = () => {
   const [resources, setResources] = useState([]);
   const navigate = useNavigate();
-  const contacts = useSelector(state => state.contacts);
-
-
-  console.log(contacts.resources);
 
 
   useEffect(() => {
-    setResources(contacts.resources)
+
+    async function loadData() {
+      const resources = await client.getContactList()
+      console.log(resources)
+      setResources(resources);
+    }
+
+    loadData();
   }, []);
 
   const handlerClick = (id) => {

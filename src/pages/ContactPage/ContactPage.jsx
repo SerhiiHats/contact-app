@@ -2,29 +2,36 @@ import "./ContactPage.css";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import ContactCard from "../../features/ContactCard/ContactCard.jsx";
-import {useSelector} from "react-redux";
+import {client} from "../../api/nimble.js";
 
 const initialItem = {
   avatar_url: "",
   tags: [],
-  fields:{}
+  fields: {}
 }
 
 const ContactPage = () => {
   const [item, setItem] = useState(initialItem);
   const {id} = useParams();
-  const contacts = useSelector(state => state.contacts);
 
 
   useEffect(() => {
-    setItem(contacts.resources.find(item=>item.id === id))
+
+    async function loadData() {
+      const resources = await client.getContactById(id)
+      if (resources.length) {
+        setItem(resources[0]);
+      }
+    }
+
+    loadData();
   }, []);
 
 
   return (
     <div className="container-contact-page">
       ContactPage coming soon...
-     <Link to={"/"}> come back</Link>
+      <Link to={"/"}> come back</Link>
       <ContactCard
         avatar={item.avatar_url}
         tags={item.tags}
@@ -32,7 +39,7 @@ const ContactPage = () => {
       />
       <form className="form-add-tag">
         <input type="text"/>
-        <input type="submit" value="Add Tag" />
+        <input type="submit" value="Add Tag"/>
       </form>
 
     </div>
