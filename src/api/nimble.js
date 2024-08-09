@@ -51,22 +51,23 @@ async function remove(relativeUrl) {
 export const client = {
   async getContactById(id) {
     const response = await get(`/contact/${id}`);
-    return response.resources
+    return response.resources;
   },
 
   async getContactList() {
     const response = await get('/contacts?sort=created:desc');
-    return response.resources
+    // return response.resources;
+    return response;
   },
 
   async createContact(data) {
     const response = await post('/contact', data);
-    return response
+    return response;
   },
 
   async updateContactTags(id, data) {
     const response = await put(`/contacts/${id}/tags`, data);
-    return response
+    return response;
   },
 
   async deleteContactById(id) {

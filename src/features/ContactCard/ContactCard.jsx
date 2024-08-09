@@ -3,8 +3,8 @@ import {client} from "../../api/nimble.js";
 const ContactCard = ({
                        removeContact = null,
                        avatar = "/person_default.png",
-                       tags,
-                       fields
+                       tags = [],
+                       fields = []
                      }) => {
 
   const userFields = {

@@ -4,6 +4,8 @@ import ContactCard from "../../features/ContactCard/ContactCard.jsx";
 import {useEffect, useState} from "react";
 import {client} from "../../api/nimble.js";
 import {prepareNewContact} from "./prepareNewContact.js";
+import {contactsLoaded, contactsLoading} from "../../redux/reducers/contactsReducer.js";
+import {useDispatch, useSelector} from "react-redux";
 
 const initialEmptyContact = {
   firstName: "",
@@ -12,22 +14,30 @@ const initialEmptyContact = {
 }
 
 const ContactsListPage = () => {
-  const [resources, setResources] = useState([]);
+  const dispatch = useDispatch();
+  const loading = useSelector(store => store.stateContacts.loading);
+  const resources = useSelector(store => store.stateContacts.contacts.resources);
+
+
   const [createdContact, setCreatedContact] = useState(null);
   const navigate = useNavigate();
   const [newContact, setNewContact] = useState(initialEmptyContact);
 
+  console.log("Render")
+
+
   useEffect(() => {
+    dispatch(contactsLoading());
 
     async function loadData() {
       const resources = await client.getContactList()
-      setResources(resources);
+      dispatch(contactsLoaded(resources))
     }
 
     loadData();
 
-    console.log("EseEffect")
-  }, [createdContact]);
+  }, [dispatch, createdContact]);
+
 
   const handlerClick = (id) => {
     navigate(`/contact/${id}`);
@@ -93,19 +103,26 @@ const ContactsListPage = () => {
           </form>
         </div>
         <div className="contacts-right-card">
-          <h2>Contacts</h2>
+          <h2>Contacts
+            {loading && <span className="loader"> </span>}
+          </h2>
+
           <ul>
-            {resources.map(item => (
+          {resources.map(item => (
               <li className="contact-card" key={item.id} onClick={() => handlerClick(item.id)}>
                 <ContactCard
-                  removeContact={(e)=>handleDelete(e, item.id)}
-                  // idClient={item.id}
+                  removeContact={(e) => handleDelete(e, item.id)}
                   avatar={item.avatar_url}
                   tags={item.tags}
                   fields={item.fields}
                 />
               </li>
             ))}
+            {!resources.length && (
+              <li className="contact-card">
+                <ContactCard/>
+              </li>
+            )}
           </ul>
         </div>
       </section>
