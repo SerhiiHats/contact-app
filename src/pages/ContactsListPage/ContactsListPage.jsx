@@ -4,7 +4,7 @@ import ContactCard from "../../features/ContactCard/ContactCard.jsx";
 import {useEffect, useState} from "react";
 import {client} from "../../api/nimble.js";
 import {prepareNewContact} from "./prepareNewContact.js";
-import {contactsLoaded, contactsLoading} from "../../redux/reducers/contactsReducer.js";
+import {fetchContacts} from "../../redux/reducers/contactsReducer.js";
 import {useDispatch, useSelector} from "react-redux";
 
 const initialEmptyContact = {
@@ -14,27 +14,18 @@ const initialEmptyContact = {
 }
 
 const ContactsListPage = () => {
-  const dispatch = useDispatch();
   const loading = useSelector(store => store.stateContacts.loading);
-  const resources = useSelector(store => store.stateContacts.contacts.resources);
-
+  const contacts = useSelector(store => store.stateContacts.contacts);
   const [updatedContact, setUpdatedContact] = useState(null);
   const navigate = useNavigate();
   const [newContact, setNewContact] = useState(initialEmptyContact);
+  const dispatch = useDispatch();
 
   console.log("Render")
 
 
   useEffect(() => {
-    dispatch(contactsLoading());
-
-    async function loadData() {
-      const resources = await client.getContactList()
-      dispatch(contactsLoaded(resources))
-    }
-
-    loadData();
-
+    dispatch(fetchContacts());
   }, [dispatch, updatedContact]);
 
 
@@ -108,7 +99,7 @@ const ContactsListPage = () => {
                   <span className="loader"> </span>
                 </h3>
               </li>)
-              : (resources.map(item => (
+              : (contacts.map(item => (
                 <li className="contact-card" key={item.id} onClick={() => handlerClickContact(item.id)}>
                   <ContactCard
                     removeContact={(e) => handleDelete(e, item.id)}
@@ -119,11 +110,6 @@ const ContactsListPage = () => {
                 </li>
               )))
             }
-            {/*{!resources.length && (*/}
-            {/*  <li className="contact-card">*/}
-            {/*    <ContactCard/>*/}
-            {/*  </li>*/}
-            {/*)}*/}
           </ul>
         </div>
       </section>

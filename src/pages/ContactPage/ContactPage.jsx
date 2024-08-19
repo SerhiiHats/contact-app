@@ -4,7 +4,11 @@ import {useEffect, useState} from "react";
 import ContactCard from "../../features/ContactCard/ContactCard.jsx";
 import {client} from "../../api/nimble.js";
 import {useDispatch, useSelector} from "react-redux";
-import {contactClear, contactLoaded, contactLoading, contactUpdate} from "../../redux/reducers/contactReducer.js";
+import {
+  contactClear,
+  contactUpdate,
+  fetchContact
+} from "../../redux/reducers/contactReducer.js";
 
 
 const ContactPage = () => {
@@ -16,20 +20,11 @@ const ContactPage = () => {
 
 
   useEffect(() => {
+    dispatch(fetchContact(id));
 
-    async function loadData() {
-      dispatch(contactLoading());
-
-      const resources = await client.getContactById(id)
-      if (resources.length) {
-        dispatch(contactLoaded(resources[0]))
-      }
+    return () => {
+      dispatch(contactClear());
     }
-
-    loadData();
-
-    return () => dispatch(contactClear());
-
   }, [dispatch]);
 
 

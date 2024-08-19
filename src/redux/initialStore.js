@@ -1,8 +1,6 @@
 const initialStore = {
   stateContacts: {
-    contacts: {
-      "resources": [],
-    },
+    contacts: [],
     loading: false,
   },
 
