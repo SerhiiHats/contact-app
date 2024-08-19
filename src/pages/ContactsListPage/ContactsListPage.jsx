@@ -101,26 +101,29 @@ const ContactsListPage = () => {
           </form>
         </div>
         <div className="contacts-right-card">
-          <h2>Contacts
-            {loading && <span className="loader"> </span>}
-          </h2>
-
+          <h2>Contacts</h2>
           <ul>
-          {resources.map(item => (
-              <li className="contact-card" key={item.id} onClick={() => handlerClickContact(item.id)}>
-                <ContactCard
-                  removeContact={(e) => handleDelete(e, item.id)}
-                  avatar={item.avatar_url}
-                  tags={item.tags}
-                  fields={item.fields}
-                />
-              </li>
-            ))}
-            {!resources.length && (
-              <li className="contact-card">
-                <ContactCard/>
-              </li>
-            )}
+            {loading ? (<li className="contact-card">
+                <h3>Contacts loading
+                  <span className="loader"> </span>
+                </h3>
+              </li>)
+              : (resources.map(item => (
+                <li className="contact-card" key={item.id} onClick={() => handlerClickContact(item.id)}>
+                  <ContactCard
+                    removeContact={(e) => handleDelete(e, item.id)}
+                    avatar={item.avatar_url}
+                    tags={item.tags}
+                    fields={item.fields}
+                  />
+                </li>
+              )))
+            }
+            {/*{!resources.length && (*/}
+            {/*  <li className="contact-card">*/}
+            {/*    <ContactCard/>*/}
+            {/*  </li>*/}
+            {/*)}*/}
           </ul>
         </div>
       </section>

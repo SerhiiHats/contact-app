@@ -6,12 +6,12 @@ export function createReducer(initialStore, handlers) {
 
     const handler = handlers[action.type];
 
-    if (handler) {
-      return handler(store, action);
-    }
+    // if (handler) {
+    //   return handler(store, action);
+    // }
+    //
+    // return store;
 
-    return store;
-
-    // handler?.(store, action) ?? store;
+    return handler?.(store, action) ?? store;
   }
 }
