@@ -4,7 +4,17 @@ const initialStore = {
       "resources": [],
     },
     loading: false,
-  }
+  },
+
+  stateContact: {
+    contact: {
+      avatar_url: "",
+      tags: [],
+      fields: {}
+    },
+    loading: false,
+  },
+
 }
 
 

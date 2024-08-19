@@ -3,44 +3,46 @@ import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import ContactCard from "../../features/ContactCard/ContactCard.jsx";
 import {client} from "../../api/nimble.js";
-
-const initialItem = {
-  avatar_url: "",
-  tags: [],
-  fields: {}
-}
+import {useDispatch, useSelector} from "react-redux";
+import {contactClear, contactLoaded, contactLoading, contactUpdate} from "../../redux/reducers/contactReducer.js";
 
 
 const ContactPage = () => {
-  const [item, setItem] = useState(initialItem);
-  const [updateTags, setUpdateTags] = useState(null);
-  const [tag, setTag] = useState("");
-
+  const [newTag, setNewTag] = useState("");
+  const item = useSelector(store => store.stateContact.contact);
+  const loading = useSelector(store => store.stateContact.loading);
+  const dispatch = useDispatch();
   const {id} = useParams();
 
 
   useEffect(() => {
 
     async function loadData() {
+      dispatch(contactLoading());
+
       const resources = await client.getContactById(id)
       if (resources.length) {
-        setItem(resources[0]);
+        dispatch(contactLoaded(resources[0]))
       }
     }
 
     loadData();
-  }, [updateTags]);
+
+    return () => dispatch(contactClear());
+
+  }, [dispatch]);
+
 
   const handlerSubmit = async (e) => {
     e.preventDefault();
 
-    if (!tag) {
+    if (!newTag) {
       return;
     }
 
-    const newTags = tag.split(",");
+    const newTags = newTag.split(",").map(item => item.trim());
 
-    const oldTags = item.tags.map(tag=>tag.tag);
+    const oldTags = item.tags.map(tag => tag.tag);
 
     const newArrayOfTags = [...oldTags, ...newTags]
 
@@ -49,15 +51,16 @@ const ContactPage = () => {
     }
     const response = await client.updateContactTags(id, newTagsForSave);
 
-    setUpdateTags(newArrayOfTags)
-    setTag("");
+    dispatch(contactUpdate(response));
 
+    setNewTag("");
   }
 
   return (
     <div className="container-contact-page">
       ContactPage coming soon...
       <Link to={"/"}> come back</Link>
+      {loading && <span className="loaderContact"> </span>}
       <ContactCard
         avatar={item.avatar_url}
         tags={item.tags}
@@ -66,8 +69,8 @@ const ContactPage = () => {
       <form className="form-add-tag" onSubmit={e => handlerSubmit(e)}>
         <input
           type="text"
-          value={tag}
-          onChange={(e) => setTag(e.target.value)}
+          value={newTag}
+          onChange={(e) => setNewTag(e.target.value)}
         />
         <input type="submit" value="Add Tag"/>
       </form>

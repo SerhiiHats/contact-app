@@ -84,7 +84,6 @@ li {
 .loader {
     width: fit-content;
     font-weight: inherit;
-    /*font-family: monospace;*/
     font-family: inherit;
     font-size: inherit;
     clip-path: inset(0 100% 0 0);

@@ -18,8 +18,7 @@ const ContactsListPage = () => {
   const loading = useSelector(store => store.stateContacts.loading);
   const resources = useSelector(store => store.stateContacts.contacts.resources);
 
-
-  const [createdContact, setCreatedContact] = useState(null);
+  const [updatedContact, setUpdatedContact] = useState(null);
   const navigate = useNavigate();
   const [newContact, setNewContact] = useState(initialEmptyContact);
 
@@ -36,10 +35,10 @@ const ContactsListPage = () => {
 
     loadData();
 
-  }, [dispatch, createdContact]);
+  }, [dispatch, updatedContact]);
 
 
-  const handlerClick = (id) => {
+  const handlerClickContact = (id) => {
     navigate(`/contact/${id}`);
   }
 
@@ -54,15 +53,14 @@ const ContactsListPage = () => {
     e.preventDefault();
     const contact = prepareNewContact(newContact);
     const resources = await client.createContact(contact);
-    setCreatedContact(resources)
+    setUpdatedContact(resources)
     setNewContact(initialEmptyContact)
   }
 
   const handleDelete = async (e, idClient) => {
     e.stopPropagation();
     const response = await client.deleteContactById(idClient);
-    console.log(response)
-    setCreatedContact(resources)
+    setUpdatedContact(response)
   }
 
   return (
@@ -109,7 +107,7 @@ const ContactsListPage = () => {
 
           <ul>
           {resources.map(item => (
-              <li className="contact-card" key={item.id} onClick={() => handlerClick(item.id)}>
+              <li className="contact-card" key={item.id} onClick={() => handlerClickContact(item.id)}>
                 <ContactCard
                   removeContact={(e) => handleDelete(e, item.id)}
                   avatar={item.avatar_url}

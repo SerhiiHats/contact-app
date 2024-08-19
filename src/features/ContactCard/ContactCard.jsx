@@ -1,4 +1,3 @@
-import {client} from "../../api/nimble.js";
 
 const ContactCard = ({
                        removeContact = null,
@@ -28,12 +27,6 @@ const ContactCard = ({
     }
 
   }
-
-  // const handleDelete = async (e, idClient) => {
-  //   e.stopPropagation();
-  //   const response = await client.deleteContactById(idClient);
-  //   console.log(response)
-  // }
 
 
   return (
