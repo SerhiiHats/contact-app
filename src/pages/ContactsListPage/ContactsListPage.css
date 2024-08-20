@@ -5,39 +5,36 @@ li {
     list-style: none;
 }
 
-.container-contacts{
+.container-contacts {
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 16px;
     padding-right: 16px;
-    padding-top: 16px;
 }
 
 .contacts {
-
     display: grid;
-    grid-template-columns: 472px auto;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
     grid-column-gap: 0;
-    grid-row-gap: 0;
 }
 
+
 .contacts-left-card {
+    width: 100%;
     box-sizing: border-box;
     position: relative;
 }
 
-
 .form-add-contact {
-    position: sticky;
-    width: 280px;
-    height: 386px;
+    box-sizing: border-box;
+    width: calc(100vw - 30px);
+    position: fixed;
+    z-index: 1;
+    padding: 0 10px 30px;
+    background: #fff;
     top: 0;
     display: flex;
-    margin-right: 16px;
-    margin-left: auto;
-
     flex-direction: column;
 }
 
@@ -69,12 +66,10 @@ li {
     font-size: 16px;
     border-radius: 4px;
     text-align: center;
-
-
 }
 
-
 .contacts-right-card {
+    margin-top: 390px;
     background-color: white;
     padding: 0 16px;
     box-sizing: border-box;
@@ -90,26 +85,32 @@ li {
     animation: l5 1.5s steps(11) infinite;
     margin-left: 7px;
 }
+
 .loader:before {
     /*content:"Loading..."*/
-    content:"........."
+    content: "........."
 }
-@keyframes l5 {to{clip-path: inset(0 -1ch 0 0)}}
+
+@keyframes l5 {
+    to {
+        clip-path: inset(0 -1ch 0 0)
+    }
+}
 
 
 .contact-card {
     padding: 16px;
-    width: 558px;
+    width: 100%;
     background-color: #EDEDED;
     border-radius: 4px;
     margin-bottom: 16px;
 }
 
-.wrap-user{
+.wrap-user {
     position: relative;
 }
 
-.btn-delete{
+.btn-delete {
     position: absolute;
     top: -6px;
     right: -6px;
@@ -120,7 +121,7 @@ li {
 }
 
 .user {
-    width: 247px;
+    width: 100%;
     display: flex;
     margin-bottom: 6px;
     align-items: center;
@@ -158,4 +159,39 @@ li {
     font-weight: 500;
     padding: 0 12px 1px;
     margin: 6px;
+}
+
+
+@media (min-width: 800px) {
+    .contacts {
+        grid-template-columns: 472px auto;
+    }
+
+    .form-add-contact {
+        position: sticky;
+        width: 280px;
+        height: 386px;
+        top: 0;
+        display: flex;
+        margin-right: 16px;
+        margin-left: auto;
+
+        flex-direction: column;
+    }
+
+    .contact-card {
+        width: 558px;
+    }
+
+    .user {
+        width: 247px;
+
+    }
+
+    .contacts-right-card {
+        margin-top: 0;
+
+    }
+
+
 }

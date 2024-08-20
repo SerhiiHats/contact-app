@@ -1,10 +1,12 @@
 
 const ContactCard = ({
                        removeContact = null,
-                       avatar = "/person_default.png",
+                       avatar,
                        tags = [],
                        fields = []
                      }) => {
+
+  avatar = avatar || "/person_default.png";
 
   const userFields = {
     email: '',

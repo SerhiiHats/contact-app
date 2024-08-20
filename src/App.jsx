@@ -1,11 +1,17 @@
 import {Outlet} from "react-router-dom";
+import {Container, CssBaseline} from "@mui/material";
 
 function App() {
 
   return (
-    <main>
-      <Outlet/>
-    </main>
+    <>
+      <CssBaseline/>
+      <Container maxWidth="lg">
+        <main>
+          <Outlet/>
+        </main>
+      </Container>
+    </>
   )
 }
 
