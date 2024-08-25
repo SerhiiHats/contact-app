@@ -7,15 +7,35 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import ContactsListPage from "./pages/ContactsListPage/ContactsListPage.jsx";
+import ContactsList from "./pages/ContactsList/ContactsList.jsx";
 import ContactPage from "./pages/ContactPage/ContactPage.jsx";
 import {Provider} from "react-redux";
 import store from "./redux/store.js";
+import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
+
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#EDEDED',
+    },
+    secondary: {
+      main: '#A6A6A6',
+    },
+    text: {
+      primary: '#000000',
+      secondary: '#AAAAAA',
+    }
+  }
+});
 
 
 const AppEntrypoint = () => (
   <Provider store={store}>
-    <App/>
+    <ThemeProvider theme={theme}>
+      <CssBaseline/>
+      <App/>
+    </ThemeProvider>
   </Provider>
 )
 
@@ -24,10 +44,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <AppEntrypoint/>,
-    children:[
+    children: [
       {
         path: "/",
-        element: <ContactsListPage/>,
+        element: <ContactsList/>,
       },
       {
         path: "/contact/:id",

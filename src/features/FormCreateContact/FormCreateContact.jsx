@@ -33,7 +33,13 @@ const FormCreateContact = () => {
   }
 
   return (
-    <Paper elevation={10}>
+    <Paper elevation={10} sx={{
+      width: 280, ml: "auto", mr: "auto",
+      "@media (min-width: 600px)": {
+        mr: 0,
+      },
+    }}
+    >
       <form className="form-add-contact" onSubmit={handleSubmit}>
         <h2>Create Contact</h2>
 
