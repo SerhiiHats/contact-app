@@ -1,7 +1,7 @@
 import "./ContactPage.css";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import ContactCard from "../../features/ContactCard/ContactCard.jsx";
+import Contact from "../../features/Contact/Contact.jsx";
 import {client} from "../../api/nimble.js";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -56,7 +56,7 @@ const ContactPage = () => {
       ContactPage coming soon...
       <Link to={"/"}> come back</Link>
       {loading && <span className="loaderContact"> </span>}
-      <ContactCard
+      <Contact
         avatar={item.avatar_url}
         tags={item.tags}
         fields={item.fields}

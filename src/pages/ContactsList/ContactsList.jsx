@@ -1,12 +1,13 @@
 import "./ContactsListPage.css";
 import {useNavigate} from "react-router-dom";
-import ContactCard from "../../features/ContactCard/ContactCard.jsx";
+import Contact from "../../features/Contact/Contact.jsx";
 import {useEffect} from "react";
 import {client} from "../../api/nimble.js";
 import {fetchContacts} from "../../redux/reducers/contactsReducer.js";
 import {useDispatch, useSelector} from "react-redux";
-import {Box, Container, Grid} from "@mui/material";
+import {Box, Container, Grid, List, ListItem, ListItemText, Typography} from "@mui/material";
 import FormCreateContact from "../../features/FormCreateContact/FormCreateContact.jsx";
+import {css} from "@emotion/react";
 
 
 const ContactsList = () => {
@@ -53,24 +54,57 @@ const ContactsList = () => {
             border: '1px dashed grey'
           }}>
             <h2>Contacts</h2>
-            <ul>
-              {loading ? (<li className="contact-card">
-                  <h3>Contacts loading
-                    <span className="loader"> </span>
-                  </h3>
-                </li>)
-                : (contacts.map(item => (
-                  <li className="contact-card" key={item.id} onClick={() => handlerClickContact(item.id)}>
-                    <ContactCard
-                      removeContact={(e) => handleDelete(e, item.id)}
-                      avatar={item.avatar_url}
-                      tags={item.tags}
-                      fields={item.fields}
+            <List sx={{width: '100%', maxWidth: 558, bgcolor: 'background.paper'}}>
+              {loading ? (
+                  <ListItem>
+                    <ListItemText
+                      primary="Contacts loading"
+                      secondary={
+                        <Typography component="span"
+                                    variant="body"
+                                    color="text.primary"
+                                    sx={css`
+                                        width: fit-content;
+                                        font-weight: inherit;
+                                        font-family: inherit;
+                                        font-size: inherit;
+                                        clip-path: inset(0 100% 0 0);
+                                        animation: l5 1.5s steps(11) infinite;
+                                        margin-left: 7px;
+
+                                        &:before {
+                                            content: ".........";
+                                        }
+
+                                        @keyframes l5 {
+                                            to {
+                                                clip-path: inset(0 -1ch 0 0)
+                                            }
+                                        }
+                                    `}
+                        >
+                        </Typography>}
                     />
-                  </li>
+
+
+                    {/*<h3>Contacts loading*/}
+                    {/*  <span className="loader"> </span>*/}
+                    {/*</h3>*/}
+                  </ListItem>)
+                : (contacts.map(item => (
+                  // <li className="contact-card" key={item.id} onClick={() => handlerClickContact(item.id)}>
+                  <Contact
+                    key={item.id}
+                    onClick={() => handlerClickContact(item.id)}
+                    removeContact={(e) => handleDelete(e, item.id)}
+                    avatar={item.avatar_url}
+                    tags={item.tags}
+                    fields={item.fields}
+                  />
+                  // </li>
                 )))
               }
-            </ul>
+            </List>
           </Grid>
         </Grid>
       </Box>

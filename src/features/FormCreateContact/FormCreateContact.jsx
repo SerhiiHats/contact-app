@@ -33,7 +33,7 @@ const FormCreateContact = () => {
   }
 
   return (
-    <Paper elevation={10} sx={{
+    <Paper elevation={1} sx={{
       width: 280, ml: "auto", mr: "auto",
       "@media (min-width: 600px)": {
         mr: 0,

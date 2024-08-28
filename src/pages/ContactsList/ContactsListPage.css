@@ -98,13 +98,14 @@
 /*}*/
 
 
-/*.contact-card {*/
-/*    padding: 16px;*/
-/*    width: 100%;*/
-/*    background-color: #EDEDED;*/
-/*    border-radius: 4px;*/
-/*    margin-bottom: 16px;*/
-/*}*/
+.contact-card {
+    padding: 16px;
+    width: 100%;
+    background-color: #EDEDED;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    text-transform: capitalize;
+}
 
 /*.wrap-user {*/
 /*    position: relative;*/
