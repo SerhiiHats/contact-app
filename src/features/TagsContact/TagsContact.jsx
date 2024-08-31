@@ -6,7 +6,7 @@ const TagsContact = ({
                      }) => {
 
   return (
-    <Stack direction="row" gap={1} sx={{mt: 2, mb: 1, flexWrap: "wrap"}}>
+    <Stack direction="row" gap={1} sx={{mt: 2, mb: 1, pr:2, flexWrap: "wrap"}}>
       {tags.map((tag) => (
         <Button
           key={tag.id}

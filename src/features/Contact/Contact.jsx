@@ -38,7 +38,6 @@ const Contact = ({
     }
     if (fields[key][0].label === "email") {
       userFields.email = fields[key][0].value;
-
     }
 
   }
@@ -46,17 +45,11 @@ const Contact = ({
 
   return (
     <ListItem
-      alignItems="flex-start"
       sx={{
         position: "relative",
         mt: 2, mb: 2, bgcolor: "#EDEDED", borderRadius: 1,
         "&>.MuiListItemSecondaryAction": {top: "2px"},
       }}
-      secondaryAction={
-        <IconButton sx={{position: 'absolute', top: "-40%", right: "-7px"}} onClick={removeContact}>
-          <HighlightOffIcon sx={{fontSize: "26px"}}/>
-        </IconButton>
-      }
       disablePadding
     >
       <ListItemButton onClick={handlerClickContact} alignItems="flex-start">
@@ -65,7 +58,7 @@ const Contact = ({
         </ListItemAvatar>
         <ListItemText
           primary={
-            <Typography variant="body2" component="div">
+            <Typography variant="body2" component="div" sx={{pr: 3}}>
               <PrimaryTextAboutContact
                 firstName={userFields.firstName}
                 lastName={userFields.lastName}
@@ -78,6 +71,9 @@ const Contact = ({
             </Typography>
           }
         />
+        <IconButton sx={{position: "absolute", top: 1, right: 1}} onClick={removeContact}>
+          <HighlightOffIcon sx={{fontSize: "26px"}}/>
+        </IconButton>
       </ListItemButton>
     </ListItem>
   );

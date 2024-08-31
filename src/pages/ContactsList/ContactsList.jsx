@@ -36,7 +36,7 @@ const ContactsList = () => {
 
   return (
     <Container maxWidth="lg">
-      <Box component="section" sx={{border: '1px dashed grey'}}>
+      <Box component="section">
         <Grid container
               direction="row"
               justifyContent="center"
@@ -50,11 +50,9 @@ const ContactsList = () => {
           }}>
             <FormCreateContact/>
           </Grid>
-          <Grid item sm={6} xs={12} sx={{
-            border: '1px dashed grey'
-          }}>
+          <Grid item sm={6} xs={12}>
             <h2>Contacts</h2>
-            <List sx={{width: '100%', maxWidth: 558, bgcolor: 'background.paper'}}>
+            <List dense={false} sx={{width: '100%', maxWidth: 558, bgcolor: 'background.paper'}}>
               {loading ? (
                   <ListItem>
                     <ListItemText
