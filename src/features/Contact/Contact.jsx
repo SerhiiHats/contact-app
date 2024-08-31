@@ -10,11 +10,12 @@ import {
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import "./Contact.css";
 import PrimaryTextAboutContact from "../PrimaryTextAboutContact/PrimaryTextAboutContact.jsx";
-import TagsForContact from "../TagsForContact/TagsForContact.jsx";
+import TagsContact from "../TagsContact/TagsContact.jsx";
 
 
 const Contact = ({
                    removeContact = null,
+                   handlerClickContact,
                    avatar = "/person_default.png",
                    tags = [],
                    fields = []
@@ -52,14 +53,13 @@ const Contact = ({
         "&>.MuiListItemSecondaryAction": {top: "2px"},
       }}
       secondaryAction={
-        <IconButton sx={{position: 'absolute', top: "-40%", right: "-7px"}} onClick={() => {
-        }}>
+        <IconButton sx={{position: 'absolute', top: "-40%", right: "-7px"}} onClick={removeContact}>
           <HighlightOffIcon sx={{fontSize: "26px"}}/>
         </IconButton>
       }
       disablePadding
     >
-      <ListItemButton alignItems="flex-start">
+      <ListItemButton onClick={handlerClickContact} alignItems="flex-start">
         <ListItemAvatar>
           <Avatar alt="avatar" src={avatar} sx={{width: 54, height: 54, mr: 2}}/>
         </ListItemAvatar>
@@ -74,7 +74,7 @@ const Contact = ({
           }
           secondary={
             <Typography variant="body2" component="div">
-              <TagsForContact tags={tags}/>
+              <TagsContact tags={tags}/>
             </Typography>
           }
         />

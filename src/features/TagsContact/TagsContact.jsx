@@ -1,12 +1,12 @@
 import {Button, Stack} from "@mui/material";
 
 
-const TagsForContact = ({
-                          tags = []
-                        }) => {
+const TagsContact = ({
+                       tags = []
+                     }) => {
 
   return (
-    <Stack direction="row" spacing={1} sx={{mt: 2, mb: 1, border: '1px dashed grey'}}>
+    <Stack direction="row" gap={1} sx={{mt: 2, mb: 1, flexWrap: "wrap"}}>
       {tags.map((tag) => (
         <Button
           key={tag.id}
@@ -22,4 +22,4 @@ const TagsForContact = ({
   );
 };
 
-export default TagsForContact;
+export default TagsContact;
