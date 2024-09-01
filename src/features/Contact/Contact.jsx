@@ -8,13 +8,12 @@ import {
   Typography
 } from "@mui/material";
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import "./Contact.css";
 import PrimaryTextAboutContact from "../PrimaryTextAboutContact/PrimaryTextAboutContact.jsx";
 import TagsContact from "../TagsContact/TagsContact.jsx";
 
 
 const Contact = ({
-                   removeContact = null,
+                   removeContact,
                    handlerClickContact,
                    avatar = "/person_default.png",
                    tags = [],

@@ -9,6 +9,8 @@ import {
   contactUpdate,
   fetchContact
 } from "../../redux/reducers/contactReducer.js";
+import {Box} from "@mui/material";
+import LinearProgress from "@mui/material/LinearProgress";
 
 
 const ContactPage = () => {
@@ -55,7 +57,11 @@ const ContactPage = () => {
     <div className="container-contact-page">
       ContactPage coming soon...
       <Link to={"/"}> come back</Link>
-      {loading && <span className="loaderContact"> </span>}
+      {loading && (
+        <Box sx={{width: '100%'}}>
+          <LinearProgress color="success"/>
+        </Box>)
+      }
       <Contact
         avatar={item.avatar_url}
         tags={item.tags}

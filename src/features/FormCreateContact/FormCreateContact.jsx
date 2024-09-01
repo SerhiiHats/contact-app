@@ -41,7 +41,7 @@ const FormCreateContact = () => {
     }}
     >
       <form className="form-add-contact" onSubmit={handleSubmit}>
-        <h2>Create Contact</h2>
+        <h2 className="head-form-create-contact">Create Contact</h2>
 
         <label className="area-input-text">
           <span>First Name</span>

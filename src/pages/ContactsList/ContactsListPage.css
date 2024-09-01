@@ -38,6 +38,10 @@
 /*    flex-direction: column;*/
 /*}*/
 
+.head-form-create-contact{
+margin-top: 0;
+}
+
 /*.area-input-text {*/
 /*    width: 100%;*/
 /*    box-sizing: border-box;*/
@@ -106,6 +110,7 @@
     margin-bottom: 16px;
     text-transform: capitalize;
 }
+
 
 /*.wrap-user {*/
 /*    position: relative;*/

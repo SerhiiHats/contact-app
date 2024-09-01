@@ -5,10 +5,10 @@ import {useEffect} from "react";
 import {client} from "../../api/nimble.js";
 import {fetchContacts} from "../../redux/reducers/contactsReducer.js";
 import {useDispatch, useSelector} from "react-redux";
-import {Box, Container, Grid, List, ListItem, ListItemText} from "@mui/material";
+import {Box, Container, Grid, List, ListItem} from "@mui/material";
 import FormCreateContact from "../../features/FormCreateContact/FormCreateContact.jsx";
-// import {css} from "@emotion/react";
-import LoaderDot from "../../features/LoaderDot/LoaderDot.jsx";
+import LinearProgress from '@mui/material/LinearProgress';
+import BasicModal from "../../features/BasicModal/BasicModal.jsx";
 
 
 const ContactsList = () => {
@@ -53,30 +53,28 @@ const ContactsList = () => {
           <Grid item sm={6} xs={12}>
             <h2>Contacts</h2>
             <List dense={false} sx={{width: '100%', maxWidth: 558, bgcolor: 'background.paper'}}>
-              {loading ? (
-                  <ListItem>
-                    <ListItemText
-                      primary="Contacts loading"
-                      secondary={
-                        <LoaderDot/>
-                      }
-                    />
-                  </ListItem>)
-                : (contacts.map(item => (
-                  <Contact
-                    key={item.id}
-                    handlerClickContact={() => handlerClickContact(item.id)}
-                    removeContact={(e) => handleDelete(e, item.id)}
-                    avatar={item.avatar_url}
-                    tags={item.tags}
-                    fields={item.fields}
-                  />
-                )))
-              }
+              <ListItem>
+                {loading && (
+                  <Box sx={{width: '100%'}}>
+                    <LinearProgress color="success"/>
+                  </Box>
+                )}
+              </ListItem>
+              {contacts.map(item => (
+                <Contact
+                  key={item.id}
+                  handlerClickContact={() => handlerClickContact(item.id)}
+                  removeContact={(e) => handleDelete(e, item.id)}
+                  avatar={item.avatar_url}
+                  tags={item.tags}
+                  fields={item.fields}
+                />
+              ))}
             </List>
           </Grid>
         </Grid>
       </Box>
+      <BasicModal open={loading}/>
     </Container>
   );
 };
