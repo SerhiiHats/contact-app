@@ -45,9 +45,9 @@ const Contact = ({
   return (
     <ListItem
       sx={{
+        mb: 2,
         position: "relative",
-        mt: 2, mb: 2, bgcolor: "#EDEDED", borderRadius: 1,
-        "&>.MuiListItemSecondaryAction": {top: "2px"},
+        bgcolor: "#EDEDED", borderRadius: 1,
       }}
       disablePadding
     >

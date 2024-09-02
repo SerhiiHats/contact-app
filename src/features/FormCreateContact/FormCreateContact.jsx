@@ -1,4 +1,4 @@
-import {Paper} from "@mui/material";
+import {FormControl, Paper, Typography} from "@mui/material";
 import {useState} from "react";
 import {prepareNewContact} from "./prepareNewContact.js";
 import {client} from "../../api/nimble.js";
@@ -41,7 +41,10 @@ const FormCreateContact = () => {
     }}
     >
       <form className="form-add-contact" onSubmit={handleSubmit}>
-        <h2 className="head-form-create-contact">Create Contact</h2>
+        <Typography variant="h5">Create Contact</Typography>
+        <FormControl component="fieldset" variant="standard">
+
+        </FormControl>
 
         <label className="area-input-text">
           <span>First Name</span>
