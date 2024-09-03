@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Box, Container, Grid, List, ListItem, Typography} from "@mui/material";
 import LinearProgress from '@mui/material/LinearProgress';
 import BasicModal from "../../features/BasicModal/BasicModal.jsx";
-import CreateContact from "../../features/FormCreateContact/CreateContact.jsx";
+import CreateContact from "../../features/CreateContact/CreateContact.jsx";
 
 
 const ContactsList = () => {
@@ -35,7 +35,7 @@ const ContactsList = () => {
   }
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{pt: 5}}>
       <Box component="section">
         <Grid container
               direction="row"
@@ -51,7 +51,7 @@ const ContactsList = () => {
             <CreateContact/>
           </Grid>
           <Grid item sm={6} xs={12}>
-            <Typography sx={{fontSize: 20, mt: 5}}>Contacts</Typography>
+            <Typography sx={{fontSize: 20}}>Contacts</Typography>
             <List dense={false} sx={{width: '100%', maxWidth: 558, bgcolor: 'background.paper'}}>
               <ListItem>
                 {loading && (
